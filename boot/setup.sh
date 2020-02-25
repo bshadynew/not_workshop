@@ -61,10 +61,6 @@ ampy --port "$port" run /tmp/config.$$.py \
 || die "config.py failed"
 rm /tmp/config.$$.py
 
-warn "Configuring boot"
-ampy --port "$port" put boot.py \
-|| die "boot.py failed"
-
 # Install the local webserver
 warn "Setting up webserver"
 ampy --port "$port" mkdir html 2>/dev/null
@@ -80,6 +76,10 @@ done
 
 warn "webserver.py: installing"
 ampy --port "$port" put webserver.py
+
+warn "Configuring boot"
+ampy --port "$port" put boot.py \
+|| die "boot.py failed"
 
 # Perform a hard reset by reading the MAC address
 esptool.py --port "$port" read_mac \

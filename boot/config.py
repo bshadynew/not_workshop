@@ -7,6 +7,8 @@ import network
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 wlan.connect(essid,password)
+wlan_ap = network.WLAN(network.AP_IF)
+wlan_ap.active(False)
 
 f = open("webrepl_cfg.py", "w")
 f.write("PASS='abcd'")
